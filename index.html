@@ -108,35 +108,35 @@
     }
 
     .lbl-to {
-      font-size: clamp(.78rem, 2.3vw, .94rem);
-      letter-spacing: 5px; font-weight: 300;
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      letter-spacing: 4px; font-weight: 500;
       color: #4a148c;
     }
     .lbl-name {
       font-family: 'Great Vibes', cursive;
-      font-size: clamp(2.1rem, 7.5vw, 3.4rem);
+      font-size: clamp(3.2rem, 10vw, 4.8rem);
       color: #4a148c; line-height: 1;
     }
     .lbl-from {
-      font-size: clamp(.78rem, 2.3vw, .94rem);
-      letter-spacing: 3px; font-weight: 300;
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      letter-spacing: 2px; font-weight: 500;
       color: #4a148c;
     }
     .lbl-from em {
       font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 1.28em;
-      font-weight: 600; color: #38006b;
+      font-style: italic; font-size: 1.35em;
+      font-weight: 700; color: #38006b;
     }
     .lbl-tap {
       margin-top: 10px;
       display: flex; flex-direction: column;
       align-items: center; gap: 3px;
-      font-size: clamp(.74rem, 2.1vw, .88rem);
-      letter-spacing: 4px; color: #6a1b9a;
-      font-weight: 400;
+      font-size: clamp(1rem, 3.5vw, 1.3rem);
+      letter-spacing: 3px; color: #6a1b9a;
+      font-weight: 600;
       animation: tapPulse 2.1s ease-in-out infinite;
     }
-    .lbl-tap .arr { font-size: .95rem; animation: arrBounce 1.6s ease-in-out infinite; }
+    .lbl-tap .arr { font-size: 1.2rem; animation: arrBounce 1.6s ease-in-out infinite; }
 
     @keyframes tapPulse { 0%,100%{ opacity:1 } 50%{ opacity:.38 } }
     @keyframes arrBounce {
@@ -147,16 +147,16 @@
     /* ══ CUSTOM TOOLTIP ══ */
     .gift-tooltip {
       position: absolute;
-      top: -54px;
+      top: -64px;
       left: 50%;
       transform: translateX(-50%) translateY(6px);
       background: linear-gradient(135deg, #e91e8c, #9c27b0);
       color: #fff;
       font-family: 'Montserrat', sans-serif;
-      font-size: clamp(.68rem, 1.9vw, .82rem);
-      font-weight: 500;
-      letter-spacing: 3px;
-      padding: 8px 20px;
+      font-size: clamp(.9rem, 3vw, 1.2rem);
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding: 10px 24px;
       border-radius: 50px;
       white-space: nowrap;
       pointer-events: none;
@@ -207,7 +207,7 @@
   <div class="gift-label">
     <span class="lbl-to">TO</span>
     <div class="lbl-name">Mona</div>
-    <span class="lbl-from">FROM <em>Ravindhar</em></span>
+    <span class="lbl-from">With Love <em>Ravindhar</em></span>
     <div class="lbl-tap">
       <span class="arr">∧</span>
       TAP TO OPEN
