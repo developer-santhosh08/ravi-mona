@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Memories 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Montserrat:wght@200;300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #f3e5f5 0%, #ede7f6 40%, #f0e6ff 70%, #e8d5f5 100%);
+      overflow-x: hidden;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* ══ CONFETTI ══ */
+    .cp {
+      position: fixed; top: -22px;
+      pointer-events: none; z-index: 200;
+      animation: cpFall linear forwards;
+    }
+    @keyframes cpFall {
+      0%   { transform:translateY(0) rotate(0deg) scale(1);       opacity:1; }
+      100% { transform:translateY(110vh) rotate(720deg) scale(.6); opacity:0; }
+    }
+
+    /* ══ WRAPPER ══ */
+    .mem-wrap {
+      position: relative; z-index: 10;
+      padding: clamp(36px,7vw,64px) 0 clamp(36px,5vw,54px);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(14px,4vw,32px);
+    }
+
+    /* ══ HEADER ══ */
+    .mem-header {
+      text-align: center;
+      margin-bottom: clamp(32px,6vw,50px);
+      animation: pageIn .9s cubic-bezier(.34,1.56,.64,1) forwards;
+    }
+    @keyframes pageIn {
+      from { opacity:0; transform:translateY(28px) scale(.94); }
+      to   { opacity:1; transform:translateY(0)    scale(1); }
+    }
+
+    .mem-hearts-top {
+      font-size: clamp(1.4rem,4.5vw,2rem);
+      display: block; margin-bottom: 6px;
+      animation: heartBeat 1.6s ease-in-out infinite;
+    }
+    @keyframes heartBeat {
+      0%,100%{transform:scale(1)} 15%{transform:scale(1.3)} 30%{transform:scale(1)} 45%{transform:scale(1.15)} 60%{transform:scale(1)}
+    }
+
+    .mem-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2.4rem,8.5vw,4.2rem);
+      background: linear-gradient(135deg, #6a1b9a, #e91e8c, #9c27b0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 3px 14px rgba(150,30,180,.3));
+      line-height: 1.2;
+    }
+
+    .mem-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(.95rem,3vw,1.18rem);
+      color: #4a148c;
+      margin-top: 8px; letter-spacing: 1px;
+    }
+
+    /* ══ BACK BUTTON ══ */
+    .back-btn {
+      display: inline-flex; align-items: center; gap:8px;
+      text-decoration: none; color: #6a1b9a;
+      font-size: clamp(.84rem,2.4vw,.98rem);
+      letter-spacing: 2px; font-weight:500;
+      padding: 11px 28px;
+      background: rgba(255,255,255,.72);
+      border: 2px solid #9c27b0;
+      border-radius: 50px;
+      box-shadow: 0 2px 12px rgba(156,39,176,.18);
+      transition: all .25s;
+      margin-bottom: clamp(22px,4.5vw,38px);
+    }
+    .back-btn:hover {
+      background: rgba(156,39,176,.12);
+      border-color: #6a1b9a;
+      color: #4a148c;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(156,39,176,.28);
+    }
+
+    /* ══ PHOTO GRID ══ */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr;              /* mobile: 1 per row */
+      gap: clamp(22px,5vw,36px);
+    }
+    @media(min-width:600px) {
+      .photo-grid { grid-template-columns: repeat(2,1fr); }  /* tablet: 2 per row */
+    }
+    @media(min-width:900px) {
+      .photo-grid { grid-template-columns: repeat(3,1fr); }  /* desktop: 3 per row */
+    }
+
+    /* ══ FRAME CARD ══ */
+    .frame-card {
+      animation: cardIn .7s ease both;
+      cursor: pointer;
+    }
+    .frame-card:nth-child(1){animation-delay:.05s}
+    .frame-card:nth-child(2){animation-delay:.12s}
+    .frame-card:nth-child(3){animation-delay:.19s}
+    .frame-card:nth-child(4){animation-delay:.26s}
+    .frame-card:nth-child(5){animation-delay:.33s}
+    .frame-card:nth-child(6){animation-delay:.40s}
+    .frame-card:nth-child(7){animation-delay:.47s}
+    .frame-card:nth-child(8){animation-delay:.54s}
+    .frame-card:nth-child(9){animation-delay:.61s}
+    .frame-card:nth-child(10){animation-delay:.68s}
+    @keyframes cardIn {
+      from { opacity:0; transform:translateY(30px) scale(.93); }
+      to   { opacity:1; transform:translateY(0)    scale(1); }
+    }
+
+    .frame-outer {
+      padding: 3px;
+      background: linear-gradient(135deg, #9c27b0, #e91e8c, #f48fb1, #9c27b0);
+      background-size: 300% 300%;
+      border-radius: 20px;
+      box-shadow: 0 14px 44px rgba(180,30,160,.28), 0 2px 8px rgba(0,0,0,.08);
+      margin-bottom: 8px; position: relative;
+      animation: frameGrad 5s ease-in-out infinite;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .frame-outer:hover, .frame-card:hover .frame-outer {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 24px 58px rgba(180,30,160,.44);
+    }
+    @keyframes frameGrad {
+      0%,100%{ background-position:0%   50%; }
+      50%    { background-position:100% 50%; }
+    }
+
+    /* Corner heart decorations (only 4 corners, no center third hearts) */
+    .hd {
+      position: absolute; z-index: 6; line-height:1;
+      font-size: clamp(.82rem,2.4vw,1.08rem);
+      pointer-events: none;
+    }
+    .hd.tl { top:-13px; left:-13px; }
+    .hd.tr { top:-13px; right:-13px; }
+    .hd.bl { bottom:-13px; left:-13px; }
+    .hd.br { bottom:-13px; right:-13px; }
+
+    .frame-inner {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: clamp(10px,2.5vw,14px);
+    }
+
+    .photo-area {
+      width:100%; aspect-ratio:1;
+      border-radius:10px; overflow:hidden;
+      position: relative;
+    }
+    .photo-area img {
+      width:100%; height:100%;
+      object-fit:cover; border-radius:10px; display:block;
+      transition: transform .4s ease;
+    }
+    .frame-card:hover .photo-area img {
+      transform: scale(1.05);
+    }
+
+    /* Tap hint overlay on mobile */
+    .photo-area::after {
+      content: '🔍';
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      background: rgba(100,20,150,.22);
+      border-radius: 10px;
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .frame-card:hover .photo-area::after {
+      opacity: 1;
+    }
+
+    .photo-caption {
+      text-align:center;
+      font-family:'Great Vibes', cursive;
+      font-size:clamp(1.15rem,3.4vw,1.45rem);
+      color:#6a1b9a; margin-top:8px;
+      font-weight:600;
+    }
+
+    /* ══ FOOTER ══ */
+    .mem-footer {
+      text-align: center;
+      padding: clamp(28px,5vw,46px) 20px clamp(28px,5vw,46px);
+      position: relative; z-index: 10;
+    }
+    .mem-footer .f1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.5rem,5.5vw,2.6rem);
+      color: #4a148c;
+    }
+    .mem-footer .f2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(.92rem,2.8vw,1.15rem);
+      color: #6a1b9a; margin-top: 6px; letter-spacing: 1px;
+    }
+    .mem-footer .f-hearts {
+      font-size: clamp(1.3rem,4.2vw,1.9rem);
+      margin-top: 10px; display: block;
+      animation: heartBeat 1.6s ease-in-out infinite;
+    }
+
+    /* ══ TAP-TO-PLAY BANNER ══ */
+    .music-banner {
+      position: fixed;
+      bottom: clamp(18px,4vw,30px);
+      left: 50%; transform: translateX(-50%);
+      z-index: 9998;
+      display: flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(.78rem,2.4vw,.95rem);
+      letter-spacing: 2px;
+      font-weight: 500;
+      padding: clamp(10px,2.5vw,14px) clamp(22px,5vw,36px);
+      border-radius: 50px;
+      box-shadow: 0 6px 30px rgba(233,30,140,.55);
+      cursor: pointer;
+      white-space: nowrap;
+      animation: bannerPop .5s cubic-bezier(.34,1.56,.64,1) forwards,
+                 bannerGlow 2s ease-in-out 0.5s infinite;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .music-banner.hide {
+      animation: bannerFade .4s ease forwards;
+      pointer-events: none;
+    }
+    .music-banner .bnote {
+      font-size: clamp(1rem,3vw,1.3rem);
+      animation: noteBounce 1.2s ease-in-out infinite;
+      display: inline-block;
+    }
+    @keyframes bannerPop {
+      from { opacity:0; transform:translateX(-50%) translateY(30px) scale(.85); }
+      to   { opacity:1; transform:translateX(-50%) translateY(0)    scale(1); }
+    }
+    @keyframes bannerGlow {
+      0%,100% { box-shadow: 0 6px 30px rgba(233,30,140,.55); }
+      50%     { box-shadow: 0 6px 48px rgba(233,30,140,.9), 0 0 60px rgba(156,39,176,.3); }
+    }
+    @keyframes bannerFade {
+      to { opacity:0; transform:translateX(-50%) translateY(20px) scale(.9); }
+    }
+    @keyframes noteBounce {
+      0%,100% { transform:translateY(0) rotate(-8deg); }
+      50%     { transform:translateY(-5px) rotate(8deg); }
+    }
+
+    /* ══ MUSIC CONTROL BUTTON ══ */
+    .music-btn {
+      position: fixed;
+      top: clamp(12px,3vw,20px);
+      right: clamp(12px,3vw,20px);
+      z-index: 9999;
+      width: clamp(44px,11vw,56px);
+      height: clamp(44px,11vw,56px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      border: 2px solid rgba(255,255,255,.35);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: clamp(1.1rem,3vw,1.4rem);
+      color: white;
+      box-shadow: 0 4px 20px rgba(233,30,140,.5);
+      transition: transform .2s, box-shadow .2s, opacity .2s;
+      -webkit-tap-highlight-color: transparent;
+      animation: musicPulse 2.5s ease-in-out infinite;
+    }
+    .music-btn:hover { transform: scale(1.13); box-shadow: 0 6px 28px rgba(233,30,140,.75); }
+    .music-btn.paused { animation: none; opacity: .72; }
+    @keyframes musicPulse {
+      0%,100% { box-shadow: 0 4px 20px rgba(233,30,140,.5); }
+      50%     { box-shadow: 0 4px 36px rgba(233,30,140,.9), 0 0 50px rgba(156,39,176,.3); }
+    }
+
+    /* ══════════════════════════════════
+       LIGHTBOX CAROUSEL
+    ══════════════════════════════════ */
+    .lb {
+      position: fixed; inset: 0;
+      z-index: 9000;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .35s ease;
+    }
+    .lb.open {
+      opacity: 1; pointer-events: all;
+    }
+
+    .lb-bg {
+      position: absolute; inset: 0;
+      background: rgba(16,0,32,.92);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb-panel {
+      position: relative; z-index: 2;
+      width: min(92vw, 560px);
+      display: flex; flex-direction: column;
+      align-items: center;
+      padding: 0 clamp(48px,12vw,70px);
+    }
+
+    /* Image frame */
+    .lb-img-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 3px solid rgba(233,30,140,.65);
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.08),
+        0 20px 60px rgba(156,39,176,.5);
+      background: #1a0030;
+    }
+    .lb-img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity .28s ease;
+    }
+    .lb-img-wrap img.fading { opacity: 0; }
+
+    /* Navigation arrows */
+    .lb-arrow {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      color: #fff; border: none; cursor: pointer;
+      width: clamp(40px,10vw,52px);
+      height: clamp(40px,10vw,52px);
+      border-radius: 50%;
+      font-size: clamp(1.5rem,4.5vw,2.2rem);
+      line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(233,30,140,.55);
+      transition: transform .2s, box-shadow .2s;
+      padding-bottom: 2px;
+      z-index: 5;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lb-arrow:hover { transform: translateY(-50%) scale(1.12); box-shadow: 0 6px 30px rgba(233,30,140,.75); }
+    .lb-prev { left: 0; }
+    .lb-next { right: 0; }
+
+    /* Close button */
+    .lb-close {
+      position: absolute;
+      top: clamp(-46px,-9vw,-38px); right: 0;
+      width: clamp(34px,8vw,42px);
+      height: clamp(34px,8vw,42px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e91e8c, #9c27b0);
+      color: #fff; border: none; cursor: pointer;
+      font-size: clamp(.9rem,2.5vw,1.1rem);
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(233,30,140,.5);
+      transition: transform .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lb-close:hover { transform: scale(1.12) rotate(90deg); }
+
+    /* Caption + counter */
+    .lb-footer {
+      margin-top: 14px;
+      text-align: center;
+      width: 100%;
+    }
+    .lb-caption {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(1.15rem,3.8vw,1.6rem);
+      color: #f48fb1;
+      display: block;
+      min-height: 2rem;
+    }
+    .lb-counter {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(.7rem,2vw,.82rem);
+      color: rgba(255,255,255,.55);
+      letter-spacing: 2px;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Dots */
+    .lb-dots {
+      display: flex; gap: clamp(5px,1.5vw,8px);
+      justify-content: center;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .lb-dot {
+      width: clamp(7px,2vw,9px);
+      height: clamp(7px,2vw,9px);
+      border-radius: 50%;
+      background: rgba(255,255,255,.28);
+      cursor: pointer;
+      transition: background .25s, transform .25s;
+      border: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lb-dot.on {
+      background: #e91e8c;
+      transform: scale(1.5);
+    }
+
+    /* Swipe hint (mobile) */
+    @media(max-width:599px) {
+      .lb-panel { padding: 0 clamp(42px,11vw,60px); }
+    }
+  </style>
+</head>
+<body>
+
+<div id="cpW" style="position:fixed;inset:0;pointer-events:none;z-index:200;overflow:hidden;"></div>
+
+<!-- Background music — resumes if started on birthday page -->
+<audio id="bg-music" loop preload="auto">
+  <source src="Mona_Ringtone.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Fixed music control -->
+<button type="button" class="music-btn paused" id="music-btn" onclick="toggleMusic()" aria-label="Toggle music" title="Play / Pause music">🎵</button>
+
+<!-- Tap-to-play banner (shown until first user gesture unlocks audio) -->
+<div id="music-banner" class="music-banner" onclick="bannerPlay()">
+  <span class="bnote">🎵</span>
+  TAP TO PLAY MUSIC
+  <span class="bnote">🎵</span>
+</div>
+
+<!-- ══ LIGHTBOX ══ -->
+<div id="lb" class="lb" role="dialog" aria-modal="true">
+  <div class="lb-bg" onclick="lbClose()"></div>
+  <div class="lb-panel">
+    <button type="button" class="lb-close" onclick="lbClose()" aria-label="Close">✕</button>
+    <button type="button" class="lb-arrow lb-prev" onclick="lbMove(-1)" aria-label="Previous">&#8249;</button>
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="" />
+    </div>
+    <button type="button" class="lb-arrow lb-next" onclick="lbMove(1)" aria-label="Next">&#8250;</button>
+    <div class="lb-footer">
+      <span id="lb-caption" class="lb-caption"></span>
+      <span id="lb-counter" class="lb-counter"></span>
+      <div id="lb-dots" class="lb-dots"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mem-wrap">
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="mem-header">
+      <!-- <span class="mem-hearts-top">💕 💖</span> -->
+      <h1 class="mem-title">Our Beautiful Memories</h1>
+      <p class="mem-subtitle">Every picture tells our love story ✨</p>
+    </div>
+
+    <!-- BACK BUTTON -->
+    <div style="text-align:center;margin-bottom:clamp(20px,4vw,34px);">
+      <a href="birthday.html" class="back-btn">← Back</a>
+    </div>
+
+    <!-- PHOTO GRID — 10 images from pictures/ -->
+    <div class="photo-grid">
+
+      <div class="frame-card" onclick="lbOpen(0)">
+        <div class="frame-outer">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20241012-WA0009 (1).jpg" alt="Memory 1" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💕 My Favourite Smile</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(1)">
+        <div class="frame-outer" style="animation-delay:.7s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20241012-WA0017.jpg" alt="Memory 2" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💖 My Beautiful Girl</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(2)">
+        <div class="frame-outer" style="animation-delay:1.4s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20250405-WA0092.jpg" alt="Memory 3" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">🌸 My Whole World</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(3)">
+        <div class="frame-outer" style="animation-delay:2.1s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20250614-WA0004.jpg" alt="Memory 4" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💝 Forever &amp; Always</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(4)">
+        <div class="frame-outer" style="animation-delay:2.8s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20250824-WA0142.jpg" alt="Memory 5" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">✨ My Sunshine</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(5)">
+        <div class="frame-outer" style="animation-delay:3.5s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20250824-WA0233.jpg" alt="Memory 6" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💞 Together Always</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(6)">
+        <div class="frame-outer" style="animation-delay:4.2s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20250824-WA0332.jpg" alt="Memory 7" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💜 My Heart</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(7)">
+        <div class="frame-outer" style="animation-delay:4.9s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/IMG-20260503-WA0001.jpg" alt="Memory 8" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">🌟 My Everything</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(8)">
+        <div class="frame-outer" style="animation-delay:5.6s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/Snapchat-2119666179.jpg" alt="Memory 9" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💗 Perfect Moments</p>
+      </div>
+
+      <div class="frame-card" onclick="lbOpen(9)">
+        <div class="frame-outer" style="animation-delay:6.3s">
+          <span class="hd tl">💜</span><span class="hd tr">🩷</span>
+          <span class="hd bl">🩷</span><span class="hd br">💜</span>
+          <div class="frame-inner">
+            <div class="photo-area">
+              <img src="pictures/Snapchat-302493356.jpg" alt="Memory 10" loading="lazy" />
+            </div>
+          </div>
+        </div>
+        <p class="photo-caption">💓 My Love</p>
+      </div>
+
+    </div><!-- /photo-grid -->
+
+    <!--  <div class="love-div">💜 &nbsp; 💕 &nbsp; 💖 &nbsp; 💕 &nbsp; 💜</div> -->
+
+  </div>
+</div>
+
+<footer class="mem-footer">
+  <p class="f1">Made with all my love, just for you Bubble 💕</p>
+  <p class="f2">Happy Birthday My Love — from Ravindhar 🎂</p>
+  <!-- <span class="f-hearts">💕 💖 💕</span>  -->
+</footer>
+
+<script>
+/* ══ IMAGE LIST ══ */
+const IMGS = [
+  { src:'pictures/IMG-20241012-WA0009 (1).jpg', cap:'💕 My Favourite Smile' },
+  { src:'pictures/IMG-20241012-WA0017.jpg',      cap:'💖 My Beautiful Girl' },
+  { src:'pictures/IMG-20250405-WA0092.jpg',      cap:'🌸 My Whole World' },
+  { src:'pictures/IMG-20250614-WA0004.jpg',      cap:'💝 Forever & Always' },
+  { src:'pictures/IMG-20250824-WA0142.jpg',      cap:'✨ My Sunshine' },
+  { src:'pictures/IMG-20250824-WA0233.jpg',      cap:'💞 Together Always' },
+  { src:'pictures/IMG-20250824-WA0332.jpg',      cap:'💜 My Heart' },
+  { src:'pictures/IMG-20260503-WA0001.jpg',      cap:'🌟 My Everything' },
+  { src:'pictures/Snapchat-2119666179.jpg',      cap:'💗 Perfect Moment' },
+  { src:'pictures/Snapchat-302493356.jpg',       cap:'💓 My Love' },
+];
+
+/* ══ LIGHTBOX ══ */
+let lbIdx = 0, lbTimer = null;
+const lbEl   = document.getElementById('lb');
+const lbImg  = document.getElementById('lb-img');
+const lbCap  = document.getElementById('lb-caption');
+const lbCnt  = document.getElementById('lb-counter');
+const lbDots = document.getElementById('lb-dots');
+
+/* Build dots once */
+IMGS.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.className = 'lb-dot' + (i===0?' on':'');
+  d.setAttribute('aria-label','Go to image '+(i+1));
+  d.onclick = () => { lbIdx=i; lbShow(); lbRestart(); };
+  lbDots.appendChild(d);
+});
+
+function lbOpen(idx) {
+  lbIdx = idx;
+  lbEl.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  lbShow();
+  lbRestart();
+}
+
+function lbClose() {
+  lbEl.classList.remove('open');
+  document.body.style.overflow = '';
+  clearInterval(lbTimer);
+}
+
+function lbMove(dir) {
+  lbIdx = (lbIdx + dir + IMGS.length) % IMGS.length;
+  lbShow();
+  lbRestart();
+}
+
+function lbShow() {
+  lbImg.classList.add('fading');
+  setTimeout(() => {
+    lbImg.src = IMGS[lbIdx].src;
+    lbImg.alt = IMGS[lbIdx].cap;
+    lbImg.classList.remove('fading');
+  }, 140);
+  lbCap.textContent = IMGS[lbIdx].cap;
+  lbCnt.textContent = (lbIdx+1) + ' / ' + IMGS.length;
+  document.querySelectorAll('.lb-dot').forEach((d,i) =>
+    d.classList.toggle('on', i===lbIdx)
+  );
+}
+
+function lbRestart() {
+  clearInterval(lbTimer);
+  lbTimer = setInterval(() => lbMove(1), 3500);
+}
+
+/* Keyboard navigation */
+document.addEventListener('keydown', e => {
+  if (!lbEl.classList.contains('open')) return;
+  if (e.key==='ArrowRight') lbMove(1);
+  if (e.key==='ArrowLeft')  lbMove(-1);
+  if (e.key==='Escape')     lbClose();
+});
+
+/* Touch/swipe support */
+let tsX = 0;
+lbEl.addEventListener('touchstart', e => { tsX = e.touches[0].clientX; }, {passive:true});
+lbEl.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - tsX;
+  if (Math.abs(dx) > 40) { lbMove(dx < 0 ? 1 : -1); }
+}, {passive:true});
+
+/* ══ CONFETTI ══ */
+(function(){
+  const w=document.getElementById('cpW');
+  const cl=['#9c27b0','#e91e8c','#f06292','#ab47bc','#d81b60','#e040fb','#c2185b','#ba68c8','#ff80ab','#7b1fa2','#f48fb1','#880e4f'];
+  function sp(){
+    const el=document.createElement('div'); el.className='cp';
+    const w2=Math.random()*10+5, h2=Math.random()*14+6, circ=Math.random()>.5;
+    const dur=(Math.random()*3.5+3).toFixed(1);
+    el.style.cssText=`left:${Math.random()*100}%;width:${circ?w2:w2}px;height:${circ?w2:h2}px;background:${cl[Math.floor(Math.random()*cl.length)]};border-radius:${circ?'50%':'3px'};animation-duration:${dur}s;animation-delay:${(Math.random()*1.2).toFixed(1)}s;`;
+    w.appendChild(el); setTimeout(()=>el.remove(),(parseFloat(dur)+2)*1000);
+  }
+  for(let i=0;i<28;i++) setTimeout(sp,Math.random()*1500);
+  setInterval(sp,200);
+})();
+
+/* ══ MUSIC — auto-resume if user started it on birthday page ══ */
+const audio    = document.getElementById('bg-music');
+const musicBtn = document.getElementById('music-btn');
+
+const banner   = document.getElementById('music-banner');
+
+function setMusicBtn(playing) {
+  musicBtn.textContent = playing ? '⏸' : '🎵';
+  musicBtn.classList.toggle('paused', !playing);
+}
+
+function hideBanner() {
+  banner.classList.add('hide');
+  setTimeout(() => { banner.style.display = 'none'; }, 420);
+}
+
+/* Called when the user taps the banner */
+function bannerPlay() {
+  audio.play().then(() => {
+    sessionStorage.setItem('bgMusic', 'playing');
+    setMusicBtn(true);
+    hideBanner();
+  }).catch(() => {});
+}
+
+function toggleMusic() {
+  if (audio.paused) {
+    audio.play().then(() => {
+      sessionStorage.setItem('bgMusic', 'playing');
+      setMusicBtn(true);
+      hideBanner();
+    });
+  } else {
+    audio.pause();
+    sessionStorage.setItem('bgMusic', 'paused');
+    setMusicBtn(false);
+  }
+}
+
+/* On page load: try autoplay immediately; show banner if blocked */
+window.addEventListener('DOMContentLoaded', () => {
+  audio.play()
+    .then(() => {
+      sessionStorage.setItem('bgMusic', 'playing');
+      setMusicBtn(true);
+      hideBanner();           /* autoplay worked — no need for banner */
+    })
+    .catch(() => {
+      /* Browser blocked autoplay — banner stays visible so user can tap it */
+      setMusicBtn(false);
+    });
+});
+</script>
+</body>
+</html>
