@@ -65,7 +65,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 3px 14px rgba(150,30,180,.3));
+      filter: drop-shadow(0 2px 4px rgba(255,255,255,0.9)) drop-shadow(0 3px 14px rgba(150,30,180,.5));
       line-height: 1.2;
     }
 
@@ -75,6 +75,8 @@
       font-size: clamp(.95rem,3vw,1.18rem);
       color: #4a148c;
       margin-top: 8px; letter-spacing: 1px;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 2px 10px rgba(255,255,255,0.8);
     }
 
     /* ══ BACK BUTTON ══ */
@@ -203,6 +205,7 @@
       font-size:clamp(1.15rem,3.4vw,1.45rem);
       color:#6a1b9a; margin-top:8px;
       font-weight:600;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.6);
     }
 
     /* ══ FOOTER ══ */
@@ -215,12 +218,15 @@
       font-family: 'Great Vibes', cursive;
       font-size: clamp(1.5rem,5.5vw,2.6rem);
       color: #4a148c;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 2px 10px rgba(255,255,255,0.7);
     }
     .mem-footer .f2 {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
       font-size: clamp(.92rem,2.8vw,1.15rem);
       color: #6a1b9a; margin-top: 6px; letter-spacing: 1px;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(255,255,255,0.9), 0 2px 8px rgba(255,255,255,0.7);
     }
     .mem-footer .f-hearts {
       font-size: clamp(1.3rem,4.2vw,1.9rem);
@@ -493,7 +499,7 @@
       <a href="birthday.html" class="back-btn">← Back</a>
     </div>
 
-    <!-- PHOTO GRID — 10 images from pictures/ -->
+    <!-- PHOTO GRID — 10 images from Pictures/ -->
     <div class="photo-grid">
 
       <div class="frame-card" onclick="lbOpen(0)">
@@ -502,7 +508,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20241012-WA0009 (1).jpg" alt="Memory 1" loading="lazy" />
+              <img src="Pictures/IMG-20241012-WA0009.jpg" alt="Memory 1" loading="lazy" />
             </div>
           </div>
         </div>
@@ -515,7 +521,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20241012-WA0017.jpg" alt="Memory 2" loading="lazy" />
+              <img src="Pictures/IMG-20241012-WA0017.jpg" alt="Memory 2" loading="lazy" />
             </div>
           </div>
         </div>
@@ -528,7 +534,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20250405-WA0092.jpg" alt="Memory 3" loading="lazy" />
+              <img src="Pictures/IMG-20250405-WA0092.jpg" alt="Memory 3" loading="lazy" />
             </div>
           </div>
         </div>
@@ -541,7 +547,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20250614-WA0004.jpg" alt="Memory 4" loading="lazy" />
+              <img src="Pictures/IMG-20250614-WA0004.jpg" alt="Memory 4" loading="lazy" />
             </div>
           </div>
         </div>
@@ -554,7 +560,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20250824-WA0142.jpg" alt="Memory 5" loading="lazy" />
+              <img src="Pictures/IMG-20250824-WA0142.jpg" alt="Memory 5" loading="lazy" />
             </div>
           </div>
         </div>
@@ -567,7 +573,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20250824-WA0233.jpg" alt="Memory 6" loading="lazy" />
+              <img src="Pictures/IMG-20250824-WA0233.jpg" alt="Memory 6" loading="lazy" />
             </div>
           </div>
         </div>
@@ -580,7 +586,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20250824-WA0332.jpg" alt="Memory 7" loading="lazy" />
+              <img src="Pictures/IMG-20250824-WA0332.jpg" alt="Memory 7" loading="lazy" />
             </div>
           </div>
         </div>
@@ -593,7 +599,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/IMG-20260503-WA0001.jpg" alt="Memory 8" loading="lazy" />
+              <img src="Pictures/IMG-20260503-WA0001.jpg" alt="Memory 8" loading="lazy" />
             </div>
           </div>
         </div>
@@ -606,7 +612,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/Snapchat-2119666179.jpg" alt="Memory 9" loading="lazy" />
+              <img src="Pictures/Snapchat-2119666179.jpg" alt="Memory 9" loading="lazy" />
             </div>
           </div>
         </div>
@@ -619,7 +625,7 @@
           <span class="hd bl">🩷</span><span class="hd br">💜</span>
           <div class="frame-inner">
             <div class="photo-area">
-              <img src="pictures/Snapchat-302493356.jpg" alt="Memory 10" loading="lazy" />
+              <img src="Pictures/Snapchat-302493356.jpg" alt="Memory 10" loading="lazy" />
             </div>
           </div>
         </div>
@@ -642,16 +648,16 @@
 <script>
 /* ══ IMAGE LIST ══ */
 const IMGS = [
-  { src:'pictures/IMG-20241012-WA0009 (1).jpg', cap:'💕 My Favourite Smile' },
-  { src:'pictures/IMG-20241012-WA0017.jpg',      cap:'💖 My Beautiful Girl' },
-  { src:'pictures/IMG-20250405-WA0092.jpg',      cap:'🌸 My Whole World' },
-  { src:'pictures/IMG-20250614-WA0004.jpg',      cap:'💝 Forever & Always' },
-  { src:'pictures/IMG-20250824-WA0142.jpg',      cap:'✨ My Sunshine' },
-  { src:'pictures/IMG-20250824-WA0233.jpg',      cap:'💞 Together Always' },
-  { src:'pictures/IMG-20250824-WA0332.jpg',      cap:'💜 My Heart' },
-  { src:'pictures/IMG-20260503-WA0001.jpg',      cap:'🌟 My Everything' },
-  { src:'pictures/Snapchat-2119666179.jpg',      cap:'💗 Perfect Moment' },
-  { src:'pictures/Snapchat-302493356.jpg',       cap:'💓 My Love' },
+  { src:'Pictures/IMG-20241012-WA0009.jpg', cap:'💕 My Favourite Smile' },
+  { src:'Pictures/IMG-20241012-WA0017.jpg',      cap:'💖 My Beautiful Girl' },
+  { src:'Pictures/IMG-20250405-WA0092.jpg',      cap:'🌸 My Whole World' },
+  { src:'Pictures/IMG-20250614-WA0004.jpg',      cap:'💝 Forever & Always' },
+  { src:'Pictures/IMG-20250824-WA0142.jpg',      cap:'✨ My Sunshine' },
+  { src:'Pictures/IMG-20250824-WA0233.jpg',      cap:'💞 Together Always' },
+  { src:'Pictures/IMG-20250824-WA0332.jpg',      cap:'💜 My Heart' },
+  { src:'Pictures/IMG-20260503-WA0001.jpg',      cap:'🌟 My Everything' },
+  { src:'Pictures/Snapchat-2119666179.jpg',      cap:'💗 Perfect Moment' },
+  { src:'Pictures/Snapchat-302493356.jpg',       cap:'💓 My Love' },
 ];
 
 /* ══ LIGHTBOX ══ */
